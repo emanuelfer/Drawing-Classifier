@@ -1,7 +1,7 @@
 size(280, 280);
 
-byte[] data = loadBytes("trains.npy");
-int total = 1000;
+byte[] data = loadBytes("rainbow.npy");
+int total = 10000;
 
 byte[] outdata = new byte[total*784];
 int outindex = 0;
@@ -24,4 +24,4 @@ for(int i = 0; i < 784; i++){
 //image(img, x, y);
 }
 
-saveBytes("trains1000.bin", outdata);
+saveBytes("rainbows10000.bin", outdata);

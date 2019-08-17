@@ -36,15 +36,6 @@ function testAll(testing){
     return percent;
 }
 
-function draw(){
-    strokeWeight(8);
-    stroke(0);
-    if(mouseIsPressed){
-        
-        line(pmouseX, pmouseY, mouseX, mouseY);
-    }
-    
-}
 
 
 

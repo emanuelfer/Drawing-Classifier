@@ -1,5 +1,5 @@
 const len = 784;
-const total_data = 1000;
+const total_data = 10000;
 
 const CAT = 0;
 const RAINBOW = 1;
@@ -17,16 +17,16 @@ let animal = ['CAT', 'RAINBOW','TRAIN'];
 let nn;
 
 function preload(){
-    cats_data = loadBytes('data/cats1000.bin');
-    trains_data = loadBytes('data/trains1000.bin');
-    rainbows_data = loadBytes('data/rainbows1000.bin');
+    cats_data = loadBytes('data/cats10000.bin');
+    trains_data = loadBytes('data/trains10000.bin');
+    rainbows_data = loadBytes('data/rainbows10000.bin');
 }
 
 
 
 function setup(){
     createCanvas(280, 280);
-    background(2558);
+    background(255);
 
     //prepare the data
     prepareData(cats, cats_data, CAT);
@@ -113,3 +113,12 @@ function setup(){
     }*/
 }
 
+function draw(){
+    strokeWeight(8);
+    stroke(0);
+    if(mouseIsPressed){
+        
+        line(pmouseX, pmouseY, mouseX, mouseY);
+    }
+    
+}
