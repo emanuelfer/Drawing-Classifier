@@ -80,6 +80,30 @@ class NeuralNetwork {
     this.activation_function = func;
   }
 
+  sum(logits){
+    //console.log(logits);
+    let sum = 0.0;
+    let C = Math.max.apply(null, logits.toArray());
+
+    for(let i = 0; i < logits.rows; i++){
+      for(let j = 0; j < logits.cols; j++){
+        sum += Math.exp(logits.data[i][j]-C);
+      }
+    }
+    return sum;
+  }
+
+  softmax(logits){
+    let sum = this.sum(logits);
+    let C = Math.max.apply(null, logits.toArray());
+    for(let i = 0; i < logits.rows; i++){
+      for(let j = 0; j < logits.cols; j++){
+        logits.data[i][j] = Math.exp(logits.data[i][j]-C) / sum;
+      }
+    }
+    return logits;
+  }
+
   train(input_array, target_array) {
     // Generating the Hidden Outputs
     let inputs = Matrix.fromArray(input_array);
@@ -91,7 +115,8 @@ class NeuralNetwork {
     // Generating the output's output!
     let outputs = Matrix.multiply(this.weights_ho, hidden);
     outputs.add(this.bias_o);
-    outputs.map(this.activation_function.func);
+    //outputs.map(this.activation_function.func);
+    outputs = this.softmax(outputs);
 
     // Convert array to matrix object
     let targets = Matrix.fromArray(target_array);
